@@ -1,0 +1,4 @@
+You are given access to a lab environment with a machine (i.e student-node) that has Ansible installed. On this machine, there's a /home/bob/playbooks/requirements.yml file that lists several collections required for a project. Your task is to install all the collections listed in the /home/bob/playbooks/requirements.yml file using the correct command.
+
+cd /home/bob/playbooks
+ansible-galaxy collection install -r requirements.yml

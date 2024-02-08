@@ -1,0 +1,17 @@
+Update the playbook /home/bob/playbooks/playbook.yaml to add a new task to start httpd service on all web nodes defined in /home/bob/playbooks/inventory file.
+
+
+Use the service module.
+
+
+---
+- name: 'hosts'
+  hosts: all
+  become: yes
+  tasks:
+    - name: 'Execute a script'
+      script: '/tmp/install_script.sh'
+    - name: 'Start httpd service'
+      service:
+         name: 'httpd'
+         state: 'started'

@@ -1,0 +1,19 @@
+Update the /home/bob/playbooks/playbook.yaml to add a new play named Execute a command on node02, and a task under it to execute cat /etc/hosts command on node02 host, name the task Task to display hosts file on node02.
+
+Refer to the given inventory file.
+
+---
+- name: 'Execute two commands on node01'
+  hosts: node01
+  become: yes
+  tasks:
+    - name: 'Execute a date command'
+      command: date
+    - name: 'Task to display hosts file on node01'
+      command: 'cat /etc/hosts'
+- name: 'Execute a command on node02'
+  hosts: node02
+  become: yes
+  tasks:
+    - name: 'Task to display hosts file on node02'
+      command: cat /etc/hosts

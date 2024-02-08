@@ -1,0 +1,27 @@
+A monitoring server (node01) has newly been introduced in your environment. We need to update the agents.conf file with a list of servers in the environment and their details.
+
+
+Navigate to the /home/bob/playbooks/monitoring-server directory. The list of servers is given in the inventory file under group lamp_app. This information must be used to generate an agents.conf file at /etc/agents.conf location on the monitoring_server i.e node01.
+
+Update the generate-agent-info.yml playbook. Use the given template file /home/bob/playbooks/monitoring-server/templates/agents.conf.j2. Moreover, a sample output file name /home/bob/playbooks/monitoring-server/templates/agents.conf.j2 is also given for your reference. The target servers are not up yet, so don't try to connect to them. Just use their details given in the inventory file.
+
+
+hostname, ipaddress, monitor_port, type, protocol
+{% for host in groups['lamp_app'] %}
+{{ host }}, {{ hostvars[host]['ansible_host'] }}, {{ hostvars[host]['monitor_port'] }}, {{ hostvars[host]['protocol'] }}
+{% endfor %}
+
+# generate-agent-info.yml
+- hosts: monitoring_server
+  become: yes
+  tasks:
+    - template:
+        src: agents.conf.j2
+        dest: /etc/agents.conf
+        
+- hosts: monitoring_server
+  become: yes
+  tasks:
+    - template:
+        src: agents.conf.j2
+        dest: /etc/agents.conf

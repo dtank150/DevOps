@@ -1,0 +1,21 @@
+We have updated the /home/bob/playbooks/playbook.yaml playbook to add a new task to disable SNMP port on localhost. However, the port is hardcoded in the playbook. Update the playbook to replace the hardcoded value of the SNMP port to use the value from the variable named snmp_port, defined in the inventory file.
+
+
+Note: You need not to execute this playbook as of now.
+
+  GNU nano 2.9.8       /home/bob/playbooks/playbook.yaml                  
+
+---
+- name: 'Add nameserver in resolv.conf file on localhost'
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Add nameserver in resolv.conf file'
+      lineinfile:
+        path: /tmp/resolv.conf
+        line: 'nameserver {{  nameserver_ip  }}'
+    - name: 'Disable SNMP Port'
+      firewalld:
+        port: '{{ snmp_port }}'
+        permanent: true
+        state: disabled

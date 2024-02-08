@@ -1,0 +1,22 @@
+We have updated the /home/bob/playbooks/practice.yaml file with some data for apple, orange and mango. Just like apple, we would like to add additional details for each item, such as color, weight etc. Modify the remaining items to match the below data.
+
+orange
+color 	weight
+orange  90g
+
+mango
+color 	weight
+yellow  150g
+
+
+- name: apple
+  color: red
+  weight: 100g
+
+- name: orange
+  color: orange
+  weight: 90g
+
+- name: mango
+  color: yellow
+  weight: 150g

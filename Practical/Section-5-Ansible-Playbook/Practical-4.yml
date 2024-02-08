@@ -1,0 +1,12 @@
+So far, we have been running all tasks on localhost. We would now like to run these tasks on node01, this host is already defined in /home/bob/playbooks/inventory file. Update the playbook /home/bob/playbooks/playbook.yaml to run the tasks on the node01 host.
+
+
+---
+- name: 'Execute two commands on node01'
+  hosts: node01
+  tasks:
+     - name: 'Execute a date command'
+       command: date
+     - name: 'Execute a command to display hosts file'
+       command: 'cat /etc/hosts'
+

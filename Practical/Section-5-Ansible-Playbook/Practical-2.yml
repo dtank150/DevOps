@@ -1,0 +1,9 @@
+Update the playbook /home/bob/playbooks/playbook.yaml to add a task name Task to display hosts file for the existing task.
+
+---
+- name: 'Execute a command to display hosts file on localhost'
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Task to display hosts file'
+      command: 'cat /etc/hosts'

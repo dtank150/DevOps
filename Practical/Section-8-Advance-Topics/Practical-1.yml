@@ -1,0 +1,18 @@
+There is a jinja2 template named /home/bob/playbooks/upper/templates/student.txt.j2 present on the student-node. Update this template to display the value of student variable in UPPERCASE.
+
+
+Example Data:
+
+{
+  "name": "David"
+}
+
+`
+
+Expected output:
+
+The student name is DAVID
+
+
+
+The student name is {{ student | upper }}

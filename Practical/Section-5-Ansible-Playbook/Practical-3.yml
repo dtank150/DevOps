@@ -1,0 +1,12 @@
+We have reset the playbook /home/bob/playbooks/playbook.yaml, now update it to add another task. The new task must execute the command cat /etc/resolv.conf and set its name to Task to display nameservers.
+
+
+---
+- name: 'Execute two commands on localhost'
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Execute a date command'
+      command: date
+    - name: 'Task to display nameservers'
+      command: cat /etc/resolv.conf

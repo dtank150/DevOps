@@ -1,0 +1,15 @@
+The /home/bob/playbooks/user_setup.yaml playbook is responsible for setting up a new user on a remote server(s). The user details like username, password, and email are already added to the /home/bob/playbooks/inventory file as a dictionary variable called user_details.
+
+
+Right now the user details is hardcoded in the playbook. Update the /home/bob/playbooks/user_setup.yaml playbook to replace the hardcoded values to use the values from the user_details variable defined in the inventory file. Once updated, please run the playbook once to make sure it works fine.
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Set up user
+      user:
+        name: "{{ user_details.username }}"
+        password: "{{ user_details.password }}"
+        comment: "{{ user_details.email }}"
+        state: present

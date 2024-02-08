@@ -1,0 +1,7 @@
+We have updated the /home/bob/playbooks/practice.yaml file with an array of apples. Add a new apple to the list to make it a total of 4.
+
+
+- apple
+- apple
+- apple
+- apple

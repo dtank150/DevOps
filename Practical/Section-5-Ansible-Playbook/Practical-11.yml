@@ -1,0 +1,18 @@
+We are attempting to install multiple packages using the yum module for a more realistic use case. The playbook /home/bob/playbooks/packages.yml installs only a single package. Update it to install all packages defined under packages variable.
+
+---
+- name: 'Install required packages'
+  hosts: localhost
+  become: yes
+  vars:
+    packages:
+      - httpd
+      - make
+      - vim
+  tasks:
+    - yum:
+        name: '{{ item }}'
+        state: present
+      with_items: '{{ packages }}'
+
+

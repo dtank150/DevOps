@@ -1,0 +1,9 @@
+In /home/bob/playbooks/practice.yaml, add two more values to make it 6.
+
+
+- apple
+- apple
+- apple
+- apple
+- apple
+- apple

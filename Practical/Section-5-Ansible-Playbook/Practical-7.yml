@@ -1,0 +1,9 @@
+There is a playbook named nginx.yaml under /home/bob/playbooks directory. It is starting nginx service on all hosts defined in /home/bob/playbooks/inventory inventory file. Use the when condition to run this task only on node02 host. 
+
+---
+-  name: 'Execute a script on all web server nodes'
+   hosts: all
+   become: yes
+   tasks:
+     -  service: 'name=nginx state=started'
+        when: 'ansible_host=="node02"'
