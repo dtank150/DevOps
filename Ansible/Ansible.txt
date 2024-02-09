@@ -1,0 +1,412 @@
+Ansible:-
+Ansible is a open source IT Automation Tool 
+
+Ansible Configuration File:-
+etc/ansible/ansible.cfg
+/opt/web-playbooks /opt-db-playbooks /opt/network-playbook 
+
+Configuration Command:-
+ansible-config list => List all configuration
+ansible-config view => Shows the current config file
+ansible-config dump => Show the current settings
+
+Set Environment Variable:-
+export ANSIBLE_GATHERING=explicit
+ansible-config dump | grep GATHERING
+DEFAULT_GATHERING(env:ANSIBLE_GATHERING)=explicit
+
+What is YAML:-
+A Yaml File is used to represent data, in this case, Configuration Data.
+Yaml is a human-readable data serialization language that is often used for writing configuration files.
+Yaml File data key-value formate
+ForEx:- Fruits: Apple
+Remember, you must have a space followed by colon differentiating the key and the value
+Array/List Represent Yaml
+Frutis:
+- Apple
+- Banana
+- Mango
+
+Vegetables:
+- Tomato
+- Carrot
+- Potato
+
+Dictionary/Map:-
+Banana:
+    Calories: 105
+    Fat: 0.4 g
+    Carbs: 27 g
+
+Grapes: 
+    Calories: 62
+    Fat: 0.3 g
+    Carbs: 16 g
+    
+Dictionary representing the nutrition information of banana. You can either set a direct value or a hashmap. you cannot have bot.
+
+Difference between Dictionary and list and list of dictonary:-
+Two main type of collections in YAML are lists and dictionaries.
+Lists are ordered collections of values, While dictionaries are unordered collections of key-value paris.
+
+Ansible Inventory:-
+Ansible needs to establish connectivity to those servers. This is done using SSH for Linux and Powershell Remoting for windows. That's what makes Ansible Agentless. Agentless means that you don't need to install any additional software. on the target machines to be able to work with Ansible. A simple SSH connectivity wouls suffice Ansible's needs. 
+One of the major disadvantages of most other orchestration tools is that you are required to configure an agent on the target systems before you can invoke any kind of automation. Now, information about these target systems is stored in an inventory file. If you don't create a new inventory file Ansible uses the default inventory file located at etc/Ansible/hosts location.
+The inventory file is in an INI like format. It's simply a number of servers listed, one after the other.You can also group different servers together by defining it like this under the name of the group within square brackets, and define the list of servers part of that group in the lines below. you can have multiple group define in a single inventory file.
+
+For Ex:-
+server1.company.com
+server2.company.com
+
+[mail]
+server3.company.com
+server4.company.com
+
+[db]
+server5.company.com
+server6.company.com
+
+[web]
+server7.company.com
+server8.company.com
+
+Inventory File Example:-
+web ansible_host=server1.company.com
+db ansible_host=server2.comapny.com
+mail ansible_host=server3.comapny.com
+web2 ansible_host=server4.company.com
+
+Inventory Parameters:-
+ansible_connection-ssh/winrm/localhost
+ansible_port-22/5986
+ansible_user-root/administrator
+ansible_ssh_pass-Password 
+
+Ansible_host is an inventory parameter used to specify the FQDN or IP address of a server.
+There are other inventory parameters too. some of them are Ansibele_conncetion, Ansible_port, Ansible_user and Ansible_SSH_pass
+Ansible_connection => It's define Ansible connects to the target server. SSH connection to a linux server OR wIN RM connection to a windows server
+
+web ansible_host=server1.company.com ansible_connection=ssh
+db ansible_host=server2.comapny.com ansible_connection=winrm
+mail ansible_host=server3.comapny.com ansible_connection=ssh
+web2 ansible_host=server4.company.com ansible_connection=winrm
+
+localhost ansible_connection=localhost
+
+Differnt Types of Inventory Format:-
+INI, YAML
+INI:- The INI format is the simplest and most straightforward. 
+INI Format Example:-
+[webservers]
+web1.example.com
+web2.example.com
+
+[dbservers]
+db1.example.com
+db2.example.com
+
+YAML:- The YAML format is more structured and flexible than the INI format.
+YAML Format Example:-
+all:
+  children:
+    webservers:
+       hosts:-
+         web1.example.com:
+         web2.example.com:
+     dbservers:
+     	 hosts:-
+     	   db1.example.com:
+     	   db2.example.com:
+     	   
+ Grouping and Parent-Child Relationships Example:-
+ INI Example:-
+ [webservers:children]
+ webservers_us
+ webservers_eu
+ 
+ [webservers_us]
+ server1_us.com ansible_host=192.168.8.181
+ server2_us.com ansible_host=192.168.8.102
+ 
+ [webservers_eu]
+ server1_eu.com ansible_host=10.12.0.101
+ server2_eu.com ansible_host=10.12.0.102
+ 
+ all:
+   children:
+     webservers:
+        children:
+          webservers_us:
+            hosts:
+              server1_us.com:
+                      ansible_host: 192.168.8.101
+               server2_us.com:
+               	ansible_host: 192.168.8.102
+            webservers_eu:
+              hosts:
+                server1_eu.com:
+                	ansible_host: 10.12.0.101
+                server2_eu.com:
+                	 ansible_host: 10.12.0.102
+
+Ansible Variables:-
+Stores information that varies with each host
+This is a playbook we created earlier to add a DNS entry into the etc/resolv.conf file. in Yaml to add a variable, we could simply add a vars directive, followed by variables in a key-value pair format.
+In inventory file Example:-
+ansible_host,ansible-port, etc..
+In Playbook.yml file:-
+vars:
+  dns_server: 10.1.250.10
+  
+ Using Variable:-
+ use variable simply variable name enclosed in {{variable name}}
+ 
+ Variable Type:-
+ 
+ String Variables:- String variables in Ansible are sequence of characters.
+ They can be defined in a playbook, inventory, or passed as command line arguments.
+ For Ex:- username: "admin"
+ 
+ Number Variables:- Number variables in Ansible can hold integer or floating-point values.
+ They can be used in mathematical operations.
+ For Ex:- max_connection: 100
+ 
+ Boolean Variables:- Boolean variables in Ansible can hold either true or false.
+ They are often used in conditional statements.
+ For Ex:- debug_mode: true
+ 
+ Valid Values								Description
+ True, 'true', 't', 'yes', 'y', 'on', '1', 1, 1.0			Truthy values
+ False, 'false', 'f', 'no', 'n', 'off', '0', 0, 0.0			Falsy Values
+ 
+ List Variables:- List variables in Ansible can hold an orderd collection of values.
+ The values can be of any type.
+ For Ex:- 
+ pacakages:
+    -nginx
+    -postgresql    
+    -git
+ `
+ Dictionary Variaables:- Dictionary variables in Ansible can hold collection of key-value pairs.
+ The keys and values can be of any type.
+ For Ex:- 
+ user:
+   name: "Admin"
+   password: "secret"
+ 
+ Variable Scopes-Host
+ Variable-Scops-Play
+ Variable-Scope-Global
+ 
+ Magic Variable:- 
+ Magic Variable-hostvars:- A magic variable called hostvars can be used to get variables defined on another host.
+ For EX:- 
+ msg: '{{ hostvars['web2'].ansible_host }}'
+ Magic Variable-groups:- groups return all hosts under a given group.
+ Magic Variable-group_names:- It returns all the groups the current host is part of In this case, when you use group names in a play for host web1, it returns web_servers and Americas, which happens to be the groups that this particular host is part of.
+ Magical Variable-inventory_hostname:-Inventory_hostname is a magic variable that gives you the name configured for the host name or SQDN.
+ 
+ Ansible Facts:- When you run a playbook and when Ansible connects to a target machine, it first collects information about the machine, such as its basic system information, like the system architecture, version of os, processor details, memory details, serial numbers, etc... It collects information about the host's network connectivity, the different interfaces, IP addresses, FQDN, MAC address, etc.., as well as device information like the different disks, volumes, mounts and the amount of space available on them, the date and time on those systems and other settings as well. These information are known as fact in Ansible.
+ Ansible gathers all these facts using the setup module. The setup module is run automatically by Ansible.
+ Only a single task and known facts gathered. The behavior of gathering facts is also governed by a setting in the Ansible configuration file called Gathering. It is by default set to implicit, meaning Ansible will automatically gather facts whether you specify it or not. Explicit is opposite where Ansible does not gather facts by default, but you can turn it on by setting the gather_facts to true in the playbook.
+ Ansible only gathers facts against host that are part of the playbook.
+ 
+ Ansible Playbooks:- A single YAML file 
+ Play:- Defines a set of activities(tasks) to be run on hosts
+ Task:- An action to be performed on the host
+        Execute a command
+        Run a script
+        Install a package
+        Shutdown/Restart
+  Hosts:- The host parameter indicates which host yoh want these operation to run on.
+  Module:- The different actions run by tasks are called modules. In this case, command, script, yum and service, are Ansible modules.
+ To display information on module installed in Ansible libraries Command:- ansible-doc-l
+ How to run or Execute Ansible Playbook:- 
+ syntax:- ansible-playbook <playbook file name>
+ For EX:- ansible-palybook playbook.yml
+ Verify Playbook:- Verifying a playbook before executing it in a production environment is a crucial practice.
+ Ansible rovides serveral modes for verifying playbooks out of which the check mode and diff mode are the main ones.
+ 
+ Check Mode:- The check mode is a dry run mode without making any actual changes on the hosts.
+ Ansible's "dry run" where no actual changes are made on hosts
+ Allows preview of playbook changes without applying them
+ Use the --check option to run a playbook in check mode
+ Ansible playbook saved as install_nginx.yml that install the nginx web server on a host. To run this playbook in check mode use --check option In check mode Ansible will not actually install nginx on the hosts.
+ All ansible modules support check mode.
+ 
+ Diff mode:- Diff mode when used with check mode shows the differences between the current state and the state after the playbook is run.
+Provides a before-and aftercomparison of playbook changes.
+Understand and verify the impact of playbook changes before applying them
+Utilize the --diff option to run a playbook in diff mode 
+
+ansible-playbook configure_nginx.yml --check --diff
+
+Syntax Check:-
+Ensures playbook syntax is error-free
+use the --syntax-check option
+How to check Syntax:-
+ansible-playbook configure_nginx.yml --syntax-check
+ 
+ Ansible-lint:- Ansible lint is a command-line tool for linting playbooks, roles and collections aimed toward any Ansible users.
+ Ansible Lint is a command-line tool that performs linting on Ansible paybooks, role, and collections.
+ It checks your code for potential errors, bugs, stylistic errors, and suspicious constructs.
+ It's akin to having a seasoned Ansible mentor guiding you,providing valuable insights, and catching issues that might have slipped past your notice.
+ for Ex:- ansible-lint style_example.yml	
+ 
+ Ansible Conditionals:-
+ Conditional-when:-
+ when: << condition >>
+ ForEx:-
+ when: ansible_os_family == "Debian"
+ 
+ Operator-or:-
+ ForEX:- when: ansible_os_family == "RedHat" or
+ 		ansible_os_family == "SUSE"
+ 
+ Operator-and:-
+ For Ex:- when: ansible_os_family == "Debian" and 
+ 		 ansible_distribution_version == "16.04"
+ 		 
+Conditional in loops:-
+For ex:-
+when: item.required == True
+ loops: "{{ packages }}"
+ 
+ Conditionals & Register:-
+ For Ex:-
+ register: result
+ when: result.stdout.find('down') != -1
+ 
+ Ansible Loops:-  loop is a looping directive that executes the same task multiple number of times. Each time it runs, it stores the value of each item in the loop in a variable named "item".
+ Loops-Visualize:- The loop directive we just saw are used to create simple loops that iterate over a lot of items.
+ Create loops in Playbook:- With_*
+ for Ex:- with_items: 
+ 		-joe
+ 		- george
+ 		-ravi
+ 		-mani
+ 		
+Ansible Modules:- It is a small program that performs actions on a local machine, API, or remote host.
+ It various groups based on their functionality. like:- System, Commands, Files, Databases, Cloud, Windows, More...
+ System Module:- User, Group, Hostname, lptables, Lvg, Lvol, make, Mount, ping, Timezone, Systemd, Service
+ Command Module:- Command, Expect, Raw, Script, Shell
+ File Modules:- Acl, Archive, Copy, File, Find, Lineinfile, Replace, Stat, Template, Unarchive
+ Database:- Mongodb, Mssql, Mysql, Postgresql, Proxysql, vertica
+ Cloud:- Amazon, Atomic, Azure, Centrylink, Cloudscale, Cloudstack, Digital Ocean, Docker, Google, Linode, Openstack, Rackspace, Samartos, Softlayer, VMware
+ Windows Module:- Win_copy, Win_command, Win_domain, Win_file, Win_iis_website, Win_msg, Win_msi, Win_package, Win_ping, Win_path, Win_rebocopy, Win_regedit, Win_shell, Win_service, Win_user, And more
+ 
+ parameter		comments
+ chdir			cd into this directory before running the command
+creates		a filename or (since 2.0) glob pattern, when it already exists, this step will not be run.
+executable		change the shell used to execute the command. Should be an absolute path to the executable.
+free_form		the command module takes a free form command to run. There is no parameter actually named 'free form'. See the 				examples!
+removes		a filename or (since 2.0) glob pattern, when it does not exist, this step will not be run.
+warn 			if command warnings are on in ansible.cfg, do not warn about this particular line if set to no/false.
+(added in 1.8)
+
+Script Module:- Runs a local script on a remote node after transferring it.
+Service Module:- Manage Services-Start, Stop, Restart
+idempotency:- An action which, when performed multiple times, has no further effect on its subject after the first time it is performed.
+Why “started” and not “start”?
+“Start” the service httpd
+Ensure service httpd is
+started
+If httpd is already started, =>do nothing
+
+Ansible Plugins:- A piece of code that modifies the functionallity of Ansible Plugins can be used to enhance various aspects of Ansible such as, inventory, modules, callbacks, filters, and more.They provide a flexible and powerful way to customize Ansible's behavior.
+Ansible plugin can be in the form of an inventory plugin, module plugin, action plugin callback plugin, or any other plugin types.
+
+Dynamic Inventory Plugin:- A dynamic inventory plugin allows users to point at data sources to compile the inventory of hosts that Ansible uses to target tasks, either via the -i /path/to/file and/or -i 'host1, host2' command line parameters or from other configuration sources.
+
+Module Plugin:- When you develop a custom module plugin, you gain the power to provision cloud resources with custom configurations.
+This plugin integrates seamlessly with your cloud provider's API, allowing you to create instances with specific AMI versions, instance, types and security groups tailored to your applications requirements.
+
+Action Plugin:- Action plugins act in conjunction with modules to execute the actions required by playbook tasks. They usually execute automatically in the background doing prerequisite work before modules execute.
+
+Modules & Plugins Index:- 
+Comprehensive resource offering detailed information on Ansible's available modules and plugins
+Navigate Ansible's extensive modules and plugins, helping you find the right tool for optimal automation
+Without an index, tracking and understanding the numerous Ansible modules and plugins would be difficult
+
+Key Features:- Search & Filtering, Detailed Documentation, Version Compatibility, Community Contributions
+
+Ansible Handlers:- Ansible handlers are special tasks associated with specific events or notifications. Define in playbook, executed when notidied by a task, Manage actions based on system state/configuration of your systems.
+For ex:- 
+handlers:
+- name: Restart Application Service
+  service:
+     name: application_service
+     state: restarted
+
+Ansible Roles:- It Provide a well-defined framework and structure for setting your tasks, variables, handlers, metadta, templates, and other files. 
+Ansible Role is a reuseable.
+Roles introduce a set of best practices that must be followed to organize all tasks into a task directory.
+All varibles used by these task in vars directory.
+Any default values goes into the default directory.
+All handlers go into the handlres directory.
+Any templates used by the playbooks go into the templates directory.
+-name: Install and configure MYSQL
+ hosts: db-server1.....db-server100
+ roles:
+   - mysql
+ 
+ ansible-galaxy init => To initilize the directory.
+ ansible-galaxy search mysql => To find a directory.
+ use role:-
+ ansible-galaxy install geerlingguy.mysql
+ playbook.yml:- 
+ roles: 
+   - geerlingguy.mysql
+ ansible-galaxy list => location of role
+ ansible-config dump | grep ROLE => default roles are installed.
+ansible-galaxy install geerlingguy.mysql -p ./roles  
+
+Ansible-Collection:- Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins.
+Ansible Collections are a way to package and distribute Ansible content, including modules, roles, plugins and other related assets. A colletion is a Self-contained unit that encapsulates these components, making them easily accessible and shareable. Collection can be created by both ansible community members and vendors, offering a wide variety of specialized functionalities.
+ansible-galaxy collection install network.cisco
+collections:
+    -my_namespace.my_collection
+All the required collection:-
+ansible-galaxy collection install -r requirements.yml
+
+Ansible-Template:- Ansible uses Jinja2 templating to enable dynamic expressions and access to Variables.
+String manipulation:- 
+The name is {{ my_name }} => To define name
+The name is {{ my_name | upper }} => To defined uppercase name.
+The name is {{ my_name | lower }} => To defined lowercase
+The name is {{ my_name | title }} => To defined title
+The name is {{ my_name | replace ("str" "newstr") => To replace the string
+The name is {{first_name | default("Krishna") }} {{ my_name }} => To defined the default filter
+
+Filters - List and Set
+{{ [1,2,3] | min }} => To define min number
+{{ [1,2,3] | max }} => To define max number
+{{ [1,2,3,2] | unique }} => To define unique number
+{{ [1,2,3,4] | union( [4,5] ) }} => To define union number
+{{ [1,2,3,4] | intersect( [4,5] ) }} => To define intersect
+{{ 100 | random }} => To define Random number
+{{ ["The", "name", "is", "Bond"] | join("") }} => To define join
+
+Loops:-
+{% for number in [0,1,2,3,4] %}
+{{ number }}
+{% endfor %}
+
+Conditions:-
+{% foe number in [0,1,2,3,4] %}
+	{% if number == 2 %}
+		{{ number }}
+	{% endif %}
+{% endfor %}
+
+Jinja2 filters:-
+abs 	float 	last 	replace  truncate  capitalize	format	length	round 	upper default 	int lower striptags first join range trim
+
+Filters - file:- 
+{{"/etc/hosts" | basname}} => To take a file name and full path to use the basename filter.
+{{"c:\windows\hosts" | win_basename }} => To take a file path is windows with the \(backslash) to use win_basename.
+{{"c:\eindows\hots" | win_splitdrive }} => To separate the drive letter from the path, to use win_splitdrive option.
+if we want just drive letters so we chain another filter called first to this expression. This returns the first element of the array:- 
+{{"c:\windows\hosts" | win_splitdrive | first }} 
+last drive letters:-
+{{"c:\windows\hosts" | win_splitdrive | last }} 
