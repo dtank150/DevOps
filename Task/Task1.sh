@@ -4,7 +4,7 @@ filepath="/home/einfochips/$1"
 
 if [ -f $filepath ]
 then
-    echo "Given File is exist"
+    echo "$1 File is exist"
 else
-    echo "Given File does not exist"
+    echo "$1 File does not exist"
 fi
