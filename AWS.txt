@@ -1,0 +1,540 @@
+Which AWS service would simply the migration of a databse to AWS?
+A) AWS Storage Getwy
+B) AWS Dtabase Migration Service => Ans
+C) Amazon EC2
+D) Amazon AppStream 2.0
+
+Ans:- (B):- AWS Databse Migration Service
+
+What is Server Composed of?
+A rack mount chassis containing a power supply, a system board, one or more CPUs, memory, storage, a network interface and a power supply.	  
+
+It Terminology:-
+Network:- Cables, routers and servers connected with each other.
+Router:- A networking device that forwards data packets between computer networks. They know where to send your packets on the internet!
+Switch:- Takes a packet and send it to the correct server / client on your network.
+
+What is Cloud Computing?
+Cloud computing is the on-demand delivery of compute power, databse storage, applications, and other IT resources
+Simply way to access serves,storage,databse and a set of application services.
+
+Deployment Models of the Cloud:-
+Private Cloud:- Povider could be Rackspace
+Private Cloud:- Cloud services used by a single organization, not exposed to the public. 
+Complete Control over it
+Security for sensitive applications
+Meet specific business needs
+
+Public Cloud:-  Microsoft Azure, Google Cloud and Amazon Web Services
+Public Cloud:- Cloud resources owned and operated by a third-party cloud service provider delivered over the internet.
+Six Advantages of Cloud computing
+
+Hybrid Cloud:- Own Infrastructure and the AWS cloud.
+Keep some servers on premises and extend some capabilities to the cloud. 
+Contorl over sensitive assets in your private infrastructure
+Flexibility and cost-effectiveness of the public cloud
+
+The Five Characteristics of Cloud Computing
+On-demand self service:- Users can provision resources and use them without human interaction from the service provider
+Broad network access:- Resources available over the network, and can be accessed by diverse client platforms
+Multiple-tencey and resource pooling:-Multiple customers can share the same infrastructure and applications with security and privacy 
+Multiple customers are serviced from the same physical resources
+Rapid elasticity and scalability:- Automatically and quickly acquire and dispose resources when need
+Quickly and easily scale based on demand
+Measured Service:-Usage is measured,users pay correctly for what they have used
+
+Six Advantages of Cloud Computing
+Trade capital expense (CAPEX) for operational expense (OPEX) :-
+Pay on-Demand:- don't own hardware
+Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX)
+Benefit from massive economies of scale:-
+Prices are reduced as AWS is more efficient due to large scale
+Stop guessing capacity:-
+Scale based on actual measured usage
+Increase speed and agility
+Stop spending money running and maintainig data centers
+Go global in minutes: leverage the AWS global infrastructure
+
+Types of Cloud Computing:-
+Infrastructure as a Service (IaaS):-
+Provide building block for cloud IT
+Provides networking, computers, data storage space
+Highest level of flexibility
+Easy parallel with traditional on-premises IT
+
+Platform as a Service (PaaS):-
+Removes the need for your organization to manage the underlying infrastructure
+Focus on the deployment and management of your applications
+
+Software as a Service (SaaS):-
+Completed product that is run and managed by the service provider
+
+Aws Global Infrastructur:-
+AWS Regions
+AWS Availability Zones
+AWS Data Centers
+AWS Edge Locations / Points of Presence
+
+AWS Regions:-
+AWS has Regions all around the world
+Names can be us-east-l, eu-west-3...
+A region is a cluster of data centers
+Most AWS services are region-scoped
+
+How to choose an AWS Region?
+Compliance with data govermence and legal requirements: data never leaves a region without your explicit permission
+Proximity:- to customers: reduce latency
+Available services within a Region:- new services and new features aren't available in every Region
+Pricing:- pricing varies region to region and is transparent in the service pricing page
+
+AWS Availability Zones:-
+Each region has many availability zones (usually 3, min is 3, max is 6). Example:- ap-southeast-2a ap-southeast-2b ap-southeast-2c
+Each availability zone (AZ) is one or more dicreate data centers with redundant power, networking, and connectivity
+They're separate from each other, so that thery're isolated from disasters
+They're connceted with high bandwith, ultra-low latency networking
+
+AWS has Global Services: 
+Identity and Access Management (IAM)
+Route 53 (DNS service)
+Cloudfront (Content Delivery Network)
+WAF (Web Application Firewall)
+
+Most AWS services are Region-scoped:
+Amazon EC2 (Infrastructure as a Service)
+Elastic Beanstalk (Platform as a Service)
+Lambda (Function as a Service)
+Rekognition (Software as a Service)
+
+Region Table
+
+IAM:- Users & Groups
+IAM = Identity and Access Management, Global service
+Root account created by default, shouldn't be used or shared
+Users are people within your organization, and can be grouped
+Groups only contain users, not other groups
+Users don't have to belong to a group, and user can beong to multiple groups
+
+IAM:Permissions:-
+Users or Groups can be assigned JSON documents'called policies
+These policies define the permissions of the users
+In AWS you apply the least privilege principle: don't give more permissions than a user needs
+
+IAM Policies Structure:-
+Consists of
+Version: policy language version, always include "2012-10-17"
+Id: an identifier for the policy (optional)
+Statement: one or more individual statements (required)
+Statement Consists of
+Sid: an identifier for the statement (optional)
+Effect: whether the statement allows or denies access (Allow, Deny)
+Principle: account/user/role to which this policy applied to 
+Action: list of actions this policy allows or denies.
+Resource: list of resources to which the actions applied to 
+Condition: conditions for when this policy is in effect (optional)
+
+IAM - Password Policy
+Strong passwords = higher security for your account
+In AWS, you can setup a password policy:
+Set a minimum password length
+Require specific character types:
+Including uppercase letter
+lowercase letter
+numbers
+non-alphanumeric characters
+Allow all IAM users to change their own passwords
+Require users to change their password after some time(password expiration)
+Prevent password re-use
+
+Multi Factor Authentication -MFA
+Users have access to your account and can possibly change configurations or delete resources in your AWS account
+You want to protect your Root Accounts and IAM users
+MFA = password you know + security device you own
+Main benefit of MFA:
+if a password is stolen or hacked, the account is not compromised
+
+MFA devices options in AWS
+Virtual MFA device:- 
+Google Authenticator, Authy:- Support for multiple tokens on a single device.
+Universal 2nd Factor (U2F) Security Key:- YubiKey by Yubico (3rd party):- Support for multiple root and IAM users using a single security key
+Hardware Key Fob MFA Device:- Provided by Gemalto (3rd party)
+Hardware Key Fob MFA Device for AWS GovCloud(US):- Provided by SurePAssID (3rd party)
+
+How can users access AWS?
+To access AWS, you have three options:
+AWS Management Console (protected by password + MFA)
+AWS Command Line Interface (CLI): Protected by access keys
+AWS Software Devloper Kit (SDK)- for code;protected by access keys
+Access Keys are generated through the AWS Console
+Users manage their own access keys
+Access Keys are secret,just like a password.Don't share them
+Access Key ID ~= username
+Secret Access Key ~= password
+
+What's the AWS CLI?
+A tool that enables you to interact with AWS services using commands in your command-line shell
+Direct access to the public APIs of AWS services
+
+AWS Software Devlopment Kit (AWS SDK)
+Language-specific APIs (set of libraries)
+Enables you to access and manage AWS services programmatically
+Embedded within your application 
+Supports
+SDKs (JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++)
+Mobile SDKs(Android,ios,...)
+IOT Device SDKs (Embedded C, Arduino,...)
+Example: AWS CLI is built on AWS SDK for Python
+
+IAM Roles for services:-
+Some AWS service will need to perform actions on your behalf
+To do so, we will assign permission to AWS services with IAM Roles
+Common roles:
+  EC2 Instance Roles
+  Lambda Function Roles
+  Roles for CloudFormation
+  
+IAM Security Tools:-
+IAM Credentials Report (account-level)
+a report that lists all your account's users and the status of their various credentials
+
+IAM Access Advisor (user-level)
+Access advisor shows the service permissions granted to a user and when those services were last accessed.
+You can use this information to revise your policies.
+
+Shared Responsibility Model for IAM:-
+AWS:-
+Insrastruture (global network security)
+Configuration and vulnerability analysis
+Compliance validation
+
+You:-
+User, Groups, Roles, Policies management and monitoring
+Enable MFA on all accounts 
+Rotate all your keys often
+USe IAM tools to apply appropriate permissions
+Analyze access patterns & review permissions
+
+Amazon EC2:-
+EC2 is one of the most popular of AWS' offering 
+EC2 = Elastic Compute Cloud = Infrastructure as a Service
+It mainly consists in the capability of:
+	Renting virtual machines (EC2)
+	Storing data on virtual drives (EBS)
+	Distributing load across machines (ELB)
+	Scaling the services using an auto-scaling group (ASG)
+
+EC2 sizing & configuration options
+Operating System (OS): Linux, Windows or MAC Os
+How much compute power & cores (CPU)
+How much random-access memory (RAM)
+How much storage space:
+	Network-attached (EBS & EFS)
+	hardware (EC2 Instance Store)
+Network card: speed of the card, Public IP address
+Firewall rules: security group
+Bootstrap script (configure at first launch): EC2 User Data
+
+EC2 User Data:-
+It is possible to bootstrap our instance using an EC2 User data script.
+bootstrapping means launching commands when a machine starts
+That script is only run once at the instance first start
+EC2 user data is used to automate boot tasks such as:
+  Installing updates
+  Installing software
+  Downloading common files from the internet
+  Anything you can think of
+ The EC2 User Data script runs with the root user
+ 
+ EC2 Instance Types -Overview
+ AWS has the following naming convention:
+ m5.2xlarge:-
+ m:- instance class
+ 5:- generation (AWS improves them over time)
+ 2xlarge:- size within the instance class
+ 
+EC2 Instance Types - General Purpose
+Great for a diversity of workloads such as webservers or code repositories
+Balance between:
+   Compute
+   Memory
+   Networking
+
+EC2 Instance Types - Compute Optimized
+Great for compute-intensive tasks that require high performance processors:
+     Batch processing workloads
+     Media transcoding
+     High performance web servers
+     High performance computing (HPC)
+     Scientific modeling & machine learning
+     Dedicated gaming servers
+     
+EC2 Instance Types - Memory Optimized
+Fast performance for workloads that process large data sets in memory
+Use cases:
+  High performance, relational/non-relational databases
+  Distributed web scale cache stores
+  In-memory databases optimized for BI (bussiness intelligence)
+  Applications performing real-time processing of big unstructured data
+
+EC2 Instance Types - Storage Optimized
+Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage
+Use cases:
+  High frequency online transaction processing (OLTP) systems
+  Relational & NoSQL databases
+  Cache for in-memory databses (for example, Redis)
+  Data warehousing applications
+  Distributed file systems
+  
+Introduction to Security Groups:-
+Security Groups are the fundamental of network security in AWS
+They control how traffic is allowed into or out of our EC2 Instances.
+Security groups only contain allow rules
+Security groups rules can reference by IP or by security group
+
+Security Groups Deeper Dive
+Security groups are acting as a "firewall" on EC2 instances
+They regulate:
+  Access to Ports
+  Authorised IP ranges - IPV4 and IPV6
+  Control of inbound network (from other to the instance)
+  Control of outbound network (from the instance to other) 
+
+Security Groups
+Good to know
+Can be attached to multiple instances
+Locked down to a region / VPC combination
+Does live "outside" the EC2 - if traffic is blocked the EC2 instance won't see it
+it's good to maintain one separate security group for SSH access
+If your application is not accessible (time out), then it's a security group issue 
+If your application gives a "connection refused" error, then it's an application error or it's not launched
+All inbound traffic is blocked by default
+All outbound traffic is authorised by default
+
+Classic Ports to know
+22 = SSH (Secure Shell) -log into a Linux instance
+21 = FTP (File Transfer Protocol) - upload files into a file share
+22 = SFTP (Secure File Transfer Protocol) - upload files using SSH
+80 = HTTP - access unsecured websites
+443 = HTTPS - access secured websites
+3389 = RDP (Remote Desktop Protocol) - Log into a windows instance.
+22 is SSH for linux instance 
+
+EC2 Instances Purchasing Options
+On-Demand Instances - short workload, predictable pricing, pay by second
+Reserved ( 1 & 3 years)
+ Reserved Instances - long workloads
+ Convertible Reserved Instances - long workloads with flexible instances
+Saving Plans ( 1 & 3 years) - commitment to an amount of usage, long workload
+Spot Instances - short workloads, cheap, can lose instance (less reliable)
+Dedicated Hosts - book an entire physical server, control instance placement
+Dedicated Instances - no other customers will share your hardware
+Capacity Reservations - reserve capacity in a specific AZ for any duration
+
+EC2 On Demand
+Pay for what you use:
+ Linux or Windows - billing per second, after the first minute
+ All other operating systems - billing per hour
+ Has the highest cost but no upfront payment
+ No long-term commitment
+ Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave
+ 
+EC2 Reserved Instances
+Up to 72% discount compared to On-demand
+You reserve a specific instance attributes (Instance  Type, Region, Tenancy, OS)
+Reservation Period - 1 year (+discount) or 3 years (+++discouunt)
+Payment Options - No Upfront (+), Partial Upfront (++), All Upfront (+++)
+Reserved Instance's Scope - Regional or Zonal (reserve capacity in an AZ)
+Recommended for steady-state usage applications (think database)
+You can buy and sell in the Reserved Instance Marketplace
+
+Convertible Reserved Instance:-
+Can change the EC2 instance type, instance family, OS, scope and tenancy
+Up to 66% discount
+Note:- The % discounts are different from the video as AWS change them over time-the exact numbers are not needed for the exam. This is just for illustrative purpose
+
+EC2 Saving Plans:-
+Get a discount based on long-term usage (up to 72% -same as Rls)
+Commit to a certain type of usage ($10/hour for 1 or 3 years)
+Usage beyond EC2 Savings Plan is billed at the On-Demand price
+
+Locked to a specific instance family & AWS region (e.g., M5 in us-east-l)
+Flexible across:
+   Instance Size (e.g.,m5.xlarge,m5.2xlarge)
+   OS(e.g., Linux, Windows)
+   Tenancy (Host, Dedicated, Default)
+
+EC2 Spot Instances:-
+Can get a discount of up to 90% compared to On-demand
+Instances that you can "lose" at any point of time if your max price is less than the current spot price
+The MOST cost-efficient instances in AWS
+Useful for workloads that are resilient to failur
+   Batch jobs
+   Data analysis
+   Image processing
+   Any distributed workloads
+   Workloads with a flexible start and end time
+
+Not suitable for critical jobs or databses
+
+EC2 Dedicated Hosts:-
+A physical server with EC2 instance capacity fully dedicated to your use 
+Allows you address compliance requirements and use your existing server-bound software licenses (per-socket, per-core, pe-VM software licenses)
+Purchasing Options:
+   On-demand - pay per second for active Dedicated Host
+   Reserved - 1 or 3 years (No Upfront, Partial Upfront, All Upfront)
+The most expensive option
+Useful for software that have complicated licensing model (BYOL - Bring Your Own License)
+Or for companies that have strong regulatory or compliance needs
+
+EC2 Dedicated Instances:-
+Instances run on hardware that's dedicated to you
+May share hardware with other instances in same account
+No control over instance placement (can move hardwae after Stop / Start)
+
+EC2 Capacity Reservations:-
+Reserve On-Demand instances capacity in a specific AZ for any duration
+You always have access to EC2 capacity when you need it
+No time commitment (create/cancle anytime), no billing discounts
+Combine with Regional Reserved Instances and Savings Plans to benifit from billing discounts
+You're charged at On-Demand rate whether you run instances or not 
+Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ
+
+Shared Responsibility Model for EC2:-
+AWS:-
+Infrstructure (global network security)
+Isolation on physical hosts
+Replacing faulty hardware
+Compliance validation
+
+User:-
+Security Groups rules 
+Operating-System patches and updates 
+Software and utilities installed on the EC2 instance
+IAM Roles assigned to EC2 & IAM user access management 
+Data security on your instance
+
+What's an EBS Volume?
+An EBS (Elastic Block Store) Volume is a network drive you can attach to your instances while they run
+It allows your instances to persist data, even after their termination
+They can only be mounted to one instance at a time (At the CCP level)
+They are bound to a specific availbility zone
+
+Anlogy: Think of them as a "network USB stick"
+Free tier: 30GB of free EBS storage of tyep General Purpose (SSD) or Magnetic per month
+
+EBS Volume:-
+It's a network drive (i.e. not a physical drive)
+  It users the network to communicate the instance, which means threre might be a bit of latency
+  It can be detached from an EC2 instance and attached to another one quickly
+  
+It's locked to an Availability Zone (AZ)
+  An EBS Volume in us-east-l a connot be attached to us-east-l b
+  To move a voulme across, you first need to snapshot it 
+
+Have a provisioned capacity (size in GBs, and IOPS)
+  you get billed for all the provisioned capacity
+  you can increase the capacity of the drive over time
+
+EBS - Delete on Termination attribute:-
+Controls the EBS behaviour when an EC2 instance terminates
+ By default, the root EBS volume is deleted (attribute enabled)
+ By default, any othey attached EBS volume is not deleted (Attribute disabled)
+This can be controlled by the AWS console /AWS CLI
+Use case: preserve root volume when instamce is terminated
+
+EBS Snapshots:-
+MAke a backup (snapshot) of your EBS volume at a point in time
+Not necessary to detach volume to do snapshot, but recommanded 
+Can copy sanpshorts across AZ or Region
+ 
+ EBS Snapshots Features:-
+ EBS Sanpshot Archive:-
+   Move a snapshot to an "archive tier" that is 75% cheaper
+   Takes within 24 to 72 hourse for restoring the archive
+
+Recycle Bin for EBS Snapshots:-
+  Setup rules to retain deleted snapshots so you can recover them after an accidental deletion
+  Specify retention (from 1 day to 1 year)
+
+AMI Overview:-
+AMI = Amazon MAchine Image
+AMI are a customization of an EC2 instance
+ You add your own software, configuration, operating system, monitoring...
+ Faster boot/ configuration time because all your software is pre-packedged
+AMI are built for a specific region (and can be copied across regions)
+You can launch EC2 instances from:
+   A public AMI:- AWS provided
+   Your own AMI:- you make and maintain them yourself
+   An AWS Marketplace AMI:- an AMI someone else made (and potentially sells)
+
+AMI Process (from an EC2 instance):-
+Start an EC2 instance and customize it
+Stop the instance (for data integrity)
+Build an AMI - this will also create EBS snapshots
+Launch instances from other AMIs
+
+EC2 Image Builder:-
+Used to automate the creation of Virtual MAchines or container images
+=> Automate the createion, maintain, validate and test EC2 AMIs
+
+EC2 Instance Store:-
+EBS volumes are network drives with good but "limited" performance
+If you need a high-performance hardware disk,use EC2 Instance Store
+
+Better I/O performance
+EC2 Instance Store lose their storage if they're stopped (ephemeral)
+Good for buffer / cache / scratch data /temporary content
+Risk of data loss if hardware fails
+Backups and Replication are your responsibility
+
+EFS - Elastic File System:-
+Managed NFS (Network File System) that can be mounted on 100 of EC2
+EFS works with Linux EC2 instances in multi-AZ
+Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning
+
+EFS Infrequent Access (EFS-IA):-
+Storage class that is cost-optimized for files not accessed every day
+Up to 92% lower cost compared to EFS Standard
+EFS will automatically move your files to EFS-IA based on the last time they were accessed
+Enable EFS-IA with a Lifecycle Policy
+Example:- move files that are not accessed for 60 days to EFS-IA
+Transparent to the applications accessing EFS
+
+Amazon FSx - Overview
+Launch 3rd party high-performance file systems on AWS
+Fully managed service
+Fsx for Lustre, Fsx for Windows File Server Fsx for NetApp ONTAP
+
+Amazon FSx for Windows File Server:-
+A fully managed, highly reliable, and scalable Windows native shared file system
+Built on Windows File Server
+Supports SMB protocol & Windows NTFS
+Integrated with Microsoft Active Directory
+Can be accessed from AWS or your on-premise infrastructure
+
+Amazon FSx for Lustre:-
+A fully high-performance, scalable file storage for High Performance Computing (HPC)
+The name Lustre is derived from "Linux" and "cluster"
+Machine Learning, Analytics, Video Processing, Financial Modeling,...
+Scales up to 100s GB/s, millions of IOPS, sub-ms latencies
+
+Scalability & High Availability:-
+Scalability means that an appluication / system can handle greater loads by adapting.
+There are two kinds of scalability:-
+	Vertical Scalability
+	Horizonatal Scalability (= elasticity)
+
+Scalability is linked but different to High availablility
+
+Vertical Scalability:-
+Vertical Scalability means increasing the size of the instance
+For example, your application runs on a t2.micro
+Scaling that application vertically means running it on a t2.large
+Vertical scalability is very common for non distributed systems, such as a database.
+There's usually a limit to how much you can vertically scale (hardware limit) 
+
+Horizontal Scalability:-
+Horizontal Scalability means increasing the number of instances / systems for your application
+Horizontal scaling implies distributed systems.
+This is very common for web applications / modern applications
+
+High Availability:-

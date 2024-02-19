@@ -1,0 +1,281 @@
+Linux:- 
+Linux is an Operating System
+Linux OS = Linux Distribution
+○ Curated software
+Distro / Flavor = Distribution
+
+Linux Kernal:-
+The kernel is the core.
+● Linux Kernel + Apps = Distro
+
+Linux Directory Structure:-
+● Common Directories
+/      -   “Root,” the top of the ﬁle system hierarchy.
+/bin   -    Binaries and other executable programs.
+/etc   -    System conﬁguration ﬁles.
+/home  -    Home directories.
+/opt   -    Optional or third party software.
+/tmp   -    Temporary space, typically cleared on reboot.
+/usr   -    User related programs
+/var   -    Variable data, most notably log ﬁles.
+
+● Comprehensive Directory Listing
+/ - “Root,” the top of the ﬁle system hierarchy.
+/bin - Binaries and other executable programs.
+/boot - Files needed to boot the operating system.
+/cgroup - Control Groups hierarchy.
+/dev - Device ﬁles, typically controlled by the operating system and the system administrators.
+/etc - System conﬁguration ﬁles.
+/export - Shared ﬁle systems.
+/home - Home directories.
+/lib - System Libraries.
+/lib64 - System Libraries, 64 bit.
+/lost+found - Used by the ﬁle system to store recovered ﬁles after a ﬁle system check.
+/media - Used to mount removable media (CD-ROMs, USBs)
+/mnt - Used to mount external ﬁle systems.
+/opt - Optional or third party software.
+/proc - Provides info about running processes.
+/root - The home directory for the root account.
+/sbin - System administration binaries.
+/selinux - Used to display information about SELinux.
+/srv - Contains data which is served by the system.
+/srv/www - Web server ﬁles.
+/srv/ftp - TP ﬁles.
+/sys - Used to display and sometimes conﬁgure the devices known to the Linux kernel.
+/tmp - Temporary space, typically cleared on reboot.
+/usr - User related programs, libraries, and docs.
+/usr/bin - Binaries and other executable programs.
+/usr/lib - Libraries.
+/usr/local - Locally installed software that is not part of the base operating system.
+/usr/sbin -  System administration binaries.
+/var - Variable data, most notably log ﬁles.
+/var/log - Log ﬁles.
+
+● Application Directory Structures
+/usr/local/crashplan/bin
+/usr/local/crashplan/etc
+/usr/local/crashplan/lib
+/usr/local/crashplan/log
+/opt/avg/bin
+/opt/avg/etc
+/opt/avg/lib
+/opt/avg/log
+/etc/opt/myapp
+/opt/myapp/bin
+/opt/myapp/lib
+/var/opt/myapp
+/usr/local/bin/myapp
+/usr/local/etc/myapp.conf
+/usr/local/lib/libmyspp.so
+/opt/acme
+/opt/acme/bin
+/opt/acme/etc
+/opt/google
+/opt/google/chrome
+/opt/google/earth
+/opt/web-team
+/opt/acme/web-team
+/usr/local/acme/web-team
+
+Basic Linux Commands
+● ls - Lists directory contents.
+● cd - Changes the current directory.
+● pwd - Displays the present working directory.
+● cat - Concatenates and displays files.
+● echo - Displays arguments to the screen.
+● man - Displays the online manual.
+● exit - Exits the shell or your current session.
+● clear - Clears the screen.
+
+ls Options
+-l long listing format
+
+man Keyboard Commands
+space - display the next page
+q - quit
+
+Directories
+● Are Containers for other files and directories.
+● Provide a tree like structure.
+● Can be accessed by name or shortcut.
+
+Directory Shortcuts
+. This directory
+.. The parent directory
+cd - Change to the previous directory
+
+Directory Separator
+/ Directory separator (forward slash)
+
+Creating and Removing Directories
+mkdir [-p] directory - Create a directory.
+rmdir [-p] directory - Remove a directory.
+rm -rf directory - Recursively removes directory.
+
+Listing All Files, Including Hidden Files
+Hidden ﬁles begin with a period.
+    Sometimes called “dot ﬁles.”
+Hidden ﬁles are not displayed by default.
+To show hidden ﬁles with ls, use ls -a.
+Command options can be combined.
+    ls -l -a is the same as ls -la and ls -al.
+
+Listing Files by Type
+Use ls -F to reveal ﬁle types.
+/ - Directory
+@ - Link
+* - Executable
+
+Symbolic Links
+A link points to the actual ﬁle or directory.
+Use the link as if it were the ﬁle.
+A link can be used to create a shortcut.
+    - Use for long ﬁle or directory names.
+    - Use to indicate the current version of software.
+
+Listing Files by Time and in Reverse
+ls -t List ﬁles by time.
+ls -r Reverse order.
+ls -latr Long listing including all ﬁles reverse sorted by time.
+
+Listing Files Recursively
+ls -R Lists ﬁles recursively
+
+The tree Command
+Similar to ls -R, but creates visual output.
+tree -d  List directories only.
+tree -C  Colorize output.
+
+List Directories, Not Contents
+ls -d  List directory name, not contents.
+
+Listing Files with Color
+ls --color  Colorize the output.
+
+Working with Spaces in Names
+Just say no to spaces!
+Alternatives:
+    Hyphens ( - )
+    Underscores ( _ )
+    CamelCase
+
+Working with Spaces in Names
+Encapsulate the entire ﬁle name in quotes.
+Use a backslash (\) to escape spaces.
+
+Permissions
+$ ls -l
+-rw-rw-r-- 1 jason users 10400 Sep 27 08:52 sales.data
+Symbol Type
+- Regular file
+d Directory
+l Symbolic link
+
+$ ls -l
+-rw-rw-r-- 1 jason users 10400 Sep 27 08:52 sales.data
+Symbol Permission
+r Read
+w Write
+x Execute
+
+Permissions - Files vs Directories
+
+Permission               File                       Directory
+Read (r)        Allows a file to be read.     Allows file names in the directory to be read.
+Write (w)       Allows a file to modified.    Allows entries to be modified within the directory.
+Execute (x)     Allows the execution of a     Allows access to contents and metadata for entries.
+                file.                       
+
+Permission Categories
+Symbol Category
+ u      User
+ g      Group
+ o      Other
+ a      All
+
+Groups
+● Every user is in at least one group.
+● Users can belong to many groups.
+● Groups are used to organize users.
+● The groups command displays a user’s groups.
+● You can also use id -Gn.
+
+Changing Permissions
+Item    Meaning
+chmod   Change mode command
+ugoa    User category user, group, other, all
++-=     Add, subtract, or set permissions
+rwx     Read, Write, Execute
+
+Numeric Based Permissions
+r w x 
+0 0 0 Value for off
+1 1 1 Binary value for on
+4 2 1 Base 10 value for on
+
+Order Has Meaning
+          U    G   O
+Symbolic rwx  r-x  r--
+Binary   111  101  100
+Decimal   7    5    4
+
+Commonly Used Permissions
+Symbolic        Octal
+-rwx------      700
+-rwxr-xr-x      755
+-rw-rw-r--      664
+-rw-rw----      660
+-rw-r--r--      644
+
+The chgrp command changes the group.
+Directory Permissions Revisited
+● Permissions on a directory can effect the files in the directory.
+● If the file permissions look correct, start checking directory permissions.
+● Work your way up to the root.
+
+File Creation Mask
+● File creation mask determines default permissions.
+● If no mask were used permissions would be:
+        ○ 777 for directories
+        ○ 666 for files
+
+The umask Command
+umask [-S] [mode]
+● Sets the file creation mask to mode, if given.
+● Use -S to for symbolic notation.
+
+                    Directory       File
+Base Permission      777            666
+Subtract Umask      -022            -022
+Creations Permission 755            644
+
+                    Directory       File
+Base Permission         777         666
+Subtract Umask          -002        -002
+Creations Permission     775         664
+
+Octal Subtraction Is an Estimation
+                    Directory       File
+Base Permission         777         666
+Subtract Umask          -007        -007
+Creations Permission     770        660 *
+
+Common umask modes
+● 022
+● 002
+● 077
+● 007
+
+Special Modes
+● umask 0022 is the same as umask 022
+● chmod 0644 is the same as chmod 644
+● The special modes are:
+        ○ setuid
+        ○ setgid
+        ○ sticky
+
+
+
+
+
+
